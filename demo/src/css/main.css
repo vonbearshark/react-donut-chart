@@ -1,0 +1,78 @@
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+	font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+  background-color: #EEEEEE;
+  color: #424242;
+}
+
+#root {
+    height: 500;
+    width: 750;
+}
+
+.donutchart-arcs-path, .donutchart-legend-item-rect, .donutchart-legend-item-label {
+    cursor: pointer;
+}
+
+.donutchart-innertext-label {
+    font-size: 18px;
+}
+
+.donutchart-innertext-value {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.donutchart-arcs-path, .donutchart-legend-item-rect {
+    fill-opacity: 0;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration: 1;
+
+    animation-name: DrawLine, FillIn;
+
+    animation-delay: .5s, 2s;
+    animation-duration: 3s, 1s; 
+    stroke-dashArray: 1500;
+    stroke-dashoffset: 1500;
+}
+
+@keyframes DrawLine {
+    to {
+        stroke-dashOffset: 0;
+    }
+}
+
+@keyframes FillIn {
+    from {
+        fill-opacity: 0;
+    }
+    to {
+        fill-opacity: 1;
+    }
+}
+
+.selected.donutchart-legend-item-label, .toggled.donutchart-legend-item-label {
+    fill: #f44336;
+    text-decoration: underline;
+}
+

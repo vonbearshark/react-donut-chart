@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb/base",
+  "plugins": ["react"],
+  "rules": {
+    "comma-dangle": 0,
+    "no-shadow": 0,
+    "indent": ["error", 4],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}

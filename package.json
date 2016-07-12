@@ -1,0 +1,64 @@
+{
+  "name": "react-donut-chart",
+  "version": "1.0.0",
+  "description": "An extendable SVG donut chart React component.",
+  "main": "index.js",
+  "scripts": {
+    "start": "hjs-dev-server",
+    "build": "webpack",
+    "lint": "eslint --ext .jsx lib",
+    "test": "babel-tape-runner ./tests/**/*.spec.js",
+    "publish": "git subtree push --prefix demo/dist origin gh-pages",
+    "deploy": "npm run lint && npm test && npm run build && npm run publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vonbearshark/react-donut-chart.git"
+  },
+  "keywords": [
+    "react",
+    "svg",
+    "donut",
+    "chart"
+  ],
+  "author": "JJ Naughton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vonbearshark/react-donut-chart/issues"
+  },
+  "homepage": "https://github.com/vonbearshark/react-donut-chart",
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-3": "^6.11.0",
+    "babel-tape-runner": "^2.0.1",
+    "classnames": "^2.2.5",
+    "css-loader": "^0.23.1",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-react": "^5.2.2",
+    "file-loader": "^0.9.0",
+    "hjs-webpack": "^8.3.0",
+    "postcss-loader": "^0.9.1",
+    "react": "^15.1.0",
+    "react-addons-test-utils": "^15.2.1",
+    "react-dom": "^15.1.0",
+    "react-hot-loader": "^1.3.0",
+    "react-unit": "^1.3.3",
+    "style-loader": "^0.13.1",
+    "tape": "^4.6.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.1",
+    "react-dom": "^0.14.0 || ^15.0.1",
+    "classnames": "^2.2.5"
+  }
+}
