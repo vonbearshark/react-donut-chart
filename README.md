@@ -4,8 +4,7 @@
 
 An extendable SVG-based donut chart React component.
 
-[Example: Things I Would Never Do](https://gitubusercontent.com/vonbearshark/react-donut-chart/master/example.gif "Example: Things I Would Never Do")
-
+![Example](https://github.com/vonbearshark/react-donut-chart/raw/master/example.gif)
 
 ---
 
@@ -36,7 +35,7 @@ View the demo [online](http://vonbearshark.github.io/react-donut-chart), or run 
 
 `npm run demo`
 
-then visit [localhost:3000](localhost:3000).
+then visit [localhost:3000](http://localhost:3000).
 
 ---
 
