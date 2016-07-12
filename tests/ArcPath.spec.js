@@ -3,7 +3,7 @@ import { createRenderer } from 'react-addons-test-utils';
 import createComponent from 'react-unit';
 import test from 'tape';
 
-import ArcPath from '../lib/ArcPath.jsx';
+import ArcPath from '../lib/dist/ArcPath.js';
 
 import mockData from '../mock/graph.js';
 

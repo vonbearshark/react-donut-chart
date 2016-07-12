@@ -3,7 +3,7 @@ import { createRenderer } from 'react-addons-test-utils';
 import createComponent from 'react-unit';
 import test from 'tape';
 
-import LegendItem from '../lib/LegendItem.jsx';
+import LegendItem from '../lib/dist/LegendItem.js';
 
 import mockData from '../mock/graph.js';
 
