@@ -10,8 +10,7 @@
     "build": "npm run build:lib && npm run build:demo",
     "lint": "eslint --ext .jsx lib",
     "test": "npm run build:lib && babel-tape-runner ./tests/**/*.spec.js",
-    "publish": "git subtree push --prefix demo/dist origin gh-pages",
-    "deploy": "npm run lint && npm test && npm run build && npm run publish"
+    "deploy": "npm run lint && npm test && npm run build && git subtree push --prefix demo/dist origin gh-pages"
   },
   "repository": {
     "type": "git",
