@@ -3,7 +3,7 @@ import { createRenderer } from 'react-addons-test-utils';
 import createComponent from 'react-unit';
 import test from 'tape';
 
-import DonutInnerText from '../lib/DonutInnerText.jsx';
+import DonutInnerText from '../lib/dist/DonutInnerText.js';
 
 import mockData from '../mock/graph.js';
 

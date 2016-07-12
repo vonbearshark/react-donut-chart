@@ -47,7 +47,9 @@ $ npm run lint
 ## NPM commands
 
 * `npm start` starts the webpack dev server for the demo
-* `npm run build` builds the `demo/dist` with webpack
+* `npm run build:lib` builds the `lib/dist` with webpack
+* `npm run build:demo` builds the `demo/dist` with webpack
+* `npm run build` builds both
 * `npm run lint` runs ESLint checks against the source
 * `npm run test` runs Tape test suite
 * `npm run publish` publishes to GH Pages
