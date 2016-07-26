@@ -5,3 +5,7 @@
 
 ## 1.0.1:
 * Adding lib dist build process to fix importing/
+
+## 1.0.2:
+* No legend offset by default
+* Hacking for condition of 100%.

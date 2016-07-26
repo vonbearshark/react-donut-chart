@@ -1,6 +1,6 @@
 {
   "name": "react-donut-chart",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An extendable SVG donut chart React component.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build:demo": "webpack",
     "build:lib": "babel lib/src --out-dir lib/dist",
     "build": "npm run build:lib && npm run build:demo",
-    "lint": "eslint --ext .jsx lib",
+    "lint": "eslint --ext .js lib/src",
     "test": "npm run build:lib && babel-tape-runner ./tests/**/*.spec.js",
     "deploy": "npm run lint && npm test && npm run build && git subtree push --prefix demo/dist origin gh-pages"
   },
@@ -42,6 +42,7 @@
     "css-loader": "^0.23.1",
     "eslint": "^3.0.1",
     "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.11.1",
     "eslint-plugin-react": "^5.2.2",
     "file-loader": "^0.9.0",
     "hjs-webpack": "^8.3.0",
