@@ -1,6 +1,6 @@
 {
   "name": "react-donut-chart",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An extendable SVG donut chart React component.",
   "main": "index.js",
   "scripts": {
