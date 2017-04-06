@@ -33,7 +33,7 @@ import DonutChart from 'react-donut-chart';
 
 View the demo [online](http://vonbearshark.github.io/react-donut-chart), or run it locally:
 
-`npm run build:demo`
+`npm run build`
 `npm run start`
 
 then visit [localhost:3000](http://localhost:3000).
