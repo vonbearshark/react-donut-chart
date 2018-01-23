@@ -57,6 +57,7 @@ outerRadius | `number` | false | `0.90` | The outer donut radius
 selectedOffset | `number` | false | `0.03` | The `outerRadius` offset when an item is selected
 emptyOffset | `number` | false | `0.08` | The `innerRadius` and `outerRadius` offset on `isEmpty` items
 toggledOffset | `number` | false | `0.04` | The `innerRadius` and `outerRadius` offset on toggle-clicked items
+startAngle | `number` | false | `0` | The drawing start angle
 formatValues | `func` | false | ```(values, total) => `${(values / total * 100).toFixed(2)}%` ``` | Custom format for values displayed in the donut chart's inner text area. By default formats as percentages rounded to two decimal places.
 onMouseEnter | `func` | false | `(item) => item` | Callback that fires when an item is hovered
 onClick | `func` | false | `onClick: (item, selected) => (selected ? item : null)` | Callback that fires when an item is toggle-clicked
