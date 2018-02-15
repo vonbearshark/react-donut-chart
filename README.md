@@ -60,8 +60,9 @@ toggledOffset | `number` | false | `0.04` | The `innerRadius` and `outerRadius` 
 startAngle | `number` | false | `0` | The drawing start angle
 formatValues | `func` | false | ```(values, total) => `${(values / total * 100).toFixed(2)}%` ``` | Custom format for values displayed in the donut chart's inner text area. By default formats as percentages rounded to two decimal places.
 onMouseEnter | `func` | false | `(item) => item` | Callback that fires when an item is hovered
-onClick | `func` | false | `onClick: (item, selected) => (selected ? item : null)` | Callback that fires when an item is toggle-clicked
+onClick | `func` | false | `onClick: (item, toggled) => (toggled ? item : null)` | Callback that fires when an item is toggle-clicked
 legend | `bool` | false | `true` | Determines whether or not to create a legend
+clickToggle | `bool` | false | `true` | Determines whether or not to toggle-freeze the graph on the arc that has been clicked
 
 ---
 
