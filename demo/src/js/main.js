@@ -21,8 +21,8 @@ render(<div>
            }
        }
        onClick = {
-           (item, selected) => {
-               if (selected) {
+           (item, toggled) => {
+               if (toggled) {
                    console.log(`selecting: ${item.label}`);
                } else {
                    console.log(`unselecting: ${item.label}`);
