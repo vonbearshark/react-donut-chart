@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRenderer } from 'react-addons-test-utils';
+import { createRenderer } from 'react-dom/test-utils';
 import createComponent from 'react-unit';
 import test from 'tape';
 

@@ -16,7 +16,7 @@ var config = getConfig({
     filename: 'main.js',
     cssFilename: 'main.css'
   },
-  clearBeforeBuild: true,
+  clearBeforeBuild: '!favicon.png',
   html: function (context) {
     return {
         'index.html': context.defaultTemplate({

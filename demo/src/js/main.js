@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import '../css/main.css';
-import '!!file?name=favicon.png!../assets/favicon.png';
 
 import DonutChart from '../../../index';
 
