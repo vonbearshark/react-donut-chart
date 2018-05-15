@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.7
+## 1.1.7
 - Updated dependencies for bug fixes
 - Updated linting
 
