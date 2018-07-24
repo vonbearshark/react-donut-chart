@@ -50,7 +50,7 @@ height | `number` | false | `500` | Height of the entire component
 width | `number` | false | `750` | Width of the entire component. If no legend is specified, then the chart takes up the entire width. If a legend is toggled, then the chart takes up 2/3 of the width, and the legend takes up 1/3
 colors | `arrayOf(string)` | false | `['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722', '#795548', '#607d8b' ]` | An array of colors (could be hex strings or named colors) for the data items. Defaults to an array of Google colors
 emptyColor | `string` | false | `'#e0e0e0'` | A color for empty data items, defaults to gray
-stokeColor | `string` | false | `'#212121'` | A color for the stroke around the items in the graph and legend, defaults to black
+strokeColor | `string` | false | `'#212121'` | A color for the stroke around the items in the graph and legend, defaults to black
 colorFunction | `func` | false | `(colors, index) => colors[(index % colors.length)]` | The default cycles through the array of colors and loops for excess
 innerRadius | `number` | false | `0.70` | The inner donut radius
 outerRadius | `number` | false | `0.90` | The outer donut radius
