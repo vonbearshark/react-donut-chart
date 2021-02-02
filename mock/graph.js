@@ -1,38 +1,38 @@
 module.exports = [{
-    label: 'Give you up',
-    value: 1208.84
+  label: 'Give you up',
+  value: 1208.84
 },
 {
-    label: 'Let you down',
-    value: 198.51
+  label: 'Let you down',
+  value: 198.51
 },
 {
-    label: 'Run around',
-    value: 754,
-    className: 'classNameTest'
+  label: 'Run around',
+  value: 754,
+  className: 'classNameTest'
 },
 {
-    label: '',
-    value: 500,
-    isEmpty: true
+  label: '',
+  value: 500,
+  isEmpty: true
 },
 {
-    label: 'Desert you',
-    value: 760
+  label: 'Desert you',
+  value: 760
 },
 {
-    label: 'Make you cry',
-    value: 1108
+  label: 'Make you cry',
+  value: 1108
 },
 {
-    label: 'Say goodbye',
-    value: 358
+  label: 'Say goodbye',
+  value: 358
 },
 {
-    label: 'Tell a lie',
-    value: 879
+  label: 'Tell a lie',
+  value: 879
 },
 {
-    label: 'Hurt you',
-    value: 1250
+  label: 'Hurt you',
+  value: 1250
 }];
