@@ -51,7 +51,8 @@ ReactDOM.render(
       <h2>Things I would never do:</h2>
       <DonutChart
         data={graph}
-        onMouseEnter={(item) => console.log(`mousing over: ${item.label}`)}
+        onMouseEnter={(item) => console.log(`mousing entering: ${item.label}`)}
+        onMouseLeave={(item) => console.log(`mouse leaving: ${item.label}`)}
         onClick={(item, toggled) =>
           toggled
             ? console.log(`selecting: ${item.label}`)

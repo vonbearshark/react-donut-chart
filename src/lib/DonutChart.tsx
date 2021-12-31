@@ -14,6 +14,7 @@ export type ItemWithRenderProps = Item & {
   clickHandlers: {
     onClick: () => void;
     onMouseEnter: () => void;
+    onMouseLeave: () => void;
   };
   fill: string;
   index: number;
@@ -35,6 +36,7 @@ export type Props = {
   legend?: boolean;
   onClick?: (item: Item, toggled: boolean) => void;
   onMouseEnter?: (item: Item) => void;
+  onMouseLeave?: (item: Item) => void;
   outerRadius?: number;
   selectedOffset?: number;
   strokeColor?: string;
@@ -101,6 +103,7 @@ const DonutChart: React.FC<Props> = ({
   innerRadius = 0.7,
   legend = true,
   onMouseEnter = (item) => item,
+  onMouseLeave = (item) => item,
   onClick = (item, toggled) => (toggled ? item : null),
   outerRadius = 0.9,
   selectedOffset = 0.03,
@@ -151,6 +154,12 @@ const DonutChart: React.FC<Props> = ({
                 if (!toggleSelect) {
                   setSelected(item);
                   onMouseEnter(item);
+                }
+              },
+
+              onMouseLeave: () => {
+                if (!toggleSelect) {
+                  onMouseLeave(item);
                 }
               },
             },
