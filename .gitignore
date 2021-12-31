@@ -1,2 +1,12 @@
-node_modules/
-npm-debug.log
+/node_modules
+/build
+/dist
+
+.DS_Store
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
