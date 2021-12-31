@@ -20,8 +20,7 @@
     "start": "react-scripts start",
     "types": "tsc --declaration --declarationMap --emitDeclarationOnly --esModuleInterop --jsx react-jsx --outDir dist/ src/lib/*",
     "build:lib": "rimraf dist && babel src/lib --out-dir dist --extensions '.tsx' && npm run types",
-    "build:site": "rimraf build && react-scripts build",
-    "deploy": "npm run build:lib && npm run build:site && git subtree push --prefix build origin gh-pages"
+    "build:site": "rimraf build && react-scripts build"
   },
   "repository": {
     "type": "git",
