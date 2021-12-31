@@ -2,7 +2,7 @@
 
 An extendable SVG-based donut chart React component.
 
-![Example](https://github.com/vonbearshark/react-donut-chart/raw/master/example.gif)
+![Example](https://github.com/vonbearshark/react-donut-chart/raw/main/example.gif)
 
 ---
 
@@ -33,7 +33,7 @@ import DonutChart from 'react-donut-chart';
 />;
 ```
 
-View the demo [online](http://vonbearshark.github.io/react-donut-chart)
+View the demo [online](http://react-donut-chart.netlify.app)
 
 ---
 
