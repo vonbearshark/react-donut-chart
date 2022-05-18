@@ -100,7 +100,7 @@ const ArcPath: React.FC<Props> = ({ item }) => {
   if (isEmpty) {
     inner += emptyOffset;
     outer -= emptyOffset;
-  } else if (selected.label === label) {
+  } else if (selected?.label === label) {
     if (toggleSelect) {
       inner -= toggledOffset;
       outer += toggledOffset;
