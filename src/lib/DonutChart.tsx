@@ -11,7 +11,7 @@ export type Item = {
 export type ItemWithRenderProps = Item & {
   angle: number;
   classNames: string;
-  clickHandlers: {
+  clickHandlers?: {
     onClick: () => void;
     onMouseEnter: () => void;
     onMouseLeave: () => void;
@@ -32,6 +32,7 @@ export type Props = {
   emptyOffset?: number;
   formatValues?: (value: number, total: number) => string;
   height?: number;
+  interactive?: boolean;
   innerRadius?: number;
   legend?: boolean;
   onClick?: (item: Item, toggled: boolean) => void;
@@ -54,7 +55,7 @@ export type Context = Pick<
   | 'width'
 > & {
   graphWidth: number;
-  selected: Item;
+  selected: Item | null;
   toggleSelect: boolean;
   total: number;
 };
@@ -100,6 +101,7 @@ const DonutChart: React.FC<Props> = ({
       ? '--'
       : `${((value / total) * 100).toFixed(2)}%`,
   height = 500,
+  interactive = true,
   innerRadius = 0.7,
   legend = true,
   onMouseEnter = (item) => item,
@@ -111,20 +113,22 @@ const DonutChart: React.FC<Props> = ({
   toggledOffset = 0.04,
   width = 750,
 }) => {
-  const [selected, setSelected] = useState(data[0]);
+  const [selected, setSelected] = useState(interactive ? data[0] : null);
   const [toggleSelect, setToggleSelect] = useState(false);
 
   useEffect(() => {
-    setSelected(data[0]);
-    setToggleSelect(false);
-  }, [data]);
+    if (interactive) {
+      setSelected(data[0]);
+      setToggleSelect(false);
+    }
+  }, [interactive, data]);
 
   const graphWidth = legend ? width * (2 / 3) : width;
   const total = data.reduce((sum, { value }) => sum + value, 0);
   const { dataWithRenderProps } = data.reduce(
     ({ angle, dataWithRenderProps }, item, index) => {
       const { className, isEmpty, label, value } = item;
-      const isSelected = selected.label === label;
+      const isSelected = selected?.label === label;
       const isToggled = isSelected && toggleSelect;
 
       return {
@@ -141,28 +145,30 @@ const DonutChart: React.FC<Props> = ({
             fill: isEmpty ? emptyColor : colorFunction(colors, index),
             opacity: isSelected && !toggleSelect ? 0.5 : 1,
             stroke: isEmpty ? emptyColor : strokeColor,
-            clickHandlers: {
-              onClick: () => {
-                if (selected.label === label) {
-                  const toggle = clickToggle ? !toggleSelect : false;
-                  setSelected(item);
-                  setToggleSelect(toggle);
-                  onClick(item, toggle);
-                }
-              },
-              onMouseEnter: () => {
-                if (!toggleSelect) {
-                  setSelected(item);
-                  onMouseEnter(item);
-                }
-              },
+            clickHandlers: interactive
+              ? {
+                  onClick: () => {
+                    if (selected?.label === label) {
+                      const toggle = clickToggle ? !toggleSelect : false;
+                      setSelected(item);
+                      setToggleSelect(toggle);
+                      onClick(item, toggle);
+                    }
+                  },
+                  onMouseEnter: () => {
+                    if (!toggleSelect) {
+                      setSelected(item);
+                      onMouseEnter(item);
+                    }
+                  },
 
-              onMouseLeave: () => {
-                if (!toggleSelect) {
-                  onMouseLeave(item);
+                  onMouseLeave: () => {
+                    if (!toggleSelect) {
+                      onMouseLeave(item);
+                    }
+                  },
                 }
-              },
-            },
+              : undefined,
           },
         ],
         total: total + value,
@@ -197,24 +203,26 @@ const DonutChart: React.FC<Props> = ({
             <ArcPath item={item} key={`arcpath${item.index}`} />
           ))}
         </g>
-        <g className={`${className}-innertext`}>
-          <text
-            className={`${className}-innertext-label`}
-            x={graphWidth / 2}
-            y="45%"
-            textAnchor="middle"
-          >
-            {selected.label}
-          </text>
-          <text
-            className={`${className}-innertext-value`}
-            x={graphWidth / 2}
-            y="60%"
-            textAnchor="middle"
-          >
-            {formatValues(selected.value, total)}
-          </text>
-        </g>
+        {selected && (
+          <g className={`${className}-innertext`}>
+            <text
+              className={`${className}-innertext-label`}
+              x={graphWidth / 2}
+              y="45%"
+              textAnchor="middle"
+            >
+              {selected.label}
+            </text>
+            <text
+              className={`${className}-innertext-value`}
+              x={graphWidth / 2}
+              y="60%"
+              textAnchor="middle"
+            >
+              {formatValues(selected.value, total)}
+            </text>
+          </g>
+        )}
         {legend && (
           <g className={`${className}-legend`}>
             {dataWithRenderProps.map((item) => (
