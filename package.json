@@ -16,7 +16,6 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "type": "module",
   "scripts": {
     "start": "react-scripts start",
     "types": "tsc --declaration --declarationMap --emitDeclarationOnly --esModuleInterop --jsx react-jsx --outDir dist/ src/lib/*",
