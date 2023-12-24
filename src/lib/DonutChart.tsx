@@ -166,13 +166,22 @@ const DonutChart: React.FC<IChartProps> = ({
     { angle: 0, dataWithRenderProps: [] as ItemWithRenderProps[] }
   );
   let containerStyle = getContainerStyle(legendSide, horizontalAlign, verticalAlign);
+  const maxLabelLength = (data
+    .sort((a, b) => b.label.length - a.label.length)[0]?.label?.length || 10) + 2;
 
   return (
     <div className={`${className}-container`} style={containerStyle}>     
-      <div className={`${className}-graph`}>
+      <div className={`${className}-graph`} style={{
+        display: "flex",
+        position: "relative",
+        flexWrap: "nowrap",
+        justifyContent:"center",
+        alignItems: "center",
+        padding: "5em" 
+      }}>
         <svg
             className={className}
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            style={{ width: "100%", height: "100%", objectFit: "contain", position: "absolute" }}
             viewBox={`0 0 ${chartSize} ${chartSize}`}
           >
             <g
@@ -197,29 +206,26 @@ const DonutChart: React.FC<IChartProps> = ({
                 />
               ))}
             </g>
+          </svg>
             {selected && (
-              <g 
+              <div 
+                style={{
+                  width: (maxLabelLength + "em"),
+                  textAlign: "center"
+                }}
                 className={`${className}-innertext`}
               >
-                <text
+                <h5
+                  style={{ height: "1.1em" }}
                   className={`${className}-innertext-label`}
-                  x={chartSize / 2}
-                  y="45%"
-                  textAnchor="middle"
                 >
-                  {selected.label}
-                </text>
-                <text
-                  className={`${className}-innertext-value`}
-                  x={chartSize / 2}
-                  y="60%"
-                  textAnchor="middle"
-                >
+                  {selected.label || " "}
+                </h5>
+                <p className={`${className}-innertext-value`}>
                   {formatValues(selected.value, total)}
-                </text>
-              </g>
+                </p>
+              </div>
             )}
-          </svg>
       </div>
         
       {legend && (
