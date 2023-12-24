@@ -52,7 +52,7 @@ function getContainerStyle(
   }[verticalAlign];
 
   const flexDirection = (isVertical? "column" : "row") + (isReverse? "-reverse" : "");
-  const flexWrap = "wrap" + (isReverse? "-reverse" : "");
+  const flexWrap = "wrap";
 
   return {
     display:"flex",
