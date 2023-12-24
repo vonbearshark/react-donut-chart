@@ -176,7 +176,9 @@ const DonutChart: React.FC<IChartProps> = ({
         flexWrap: "nowrap",
         justifyContent:"center",
         alignItems: "center",
-        padding:  "64px" 
+        width: (maxLabelLength + "em"),
+        height: (maxLabelLength + "em"),
+        textAlign: "center"
       }}>
         <svg
             className={className}
@@ -207,13 +209,7 @@ const DonutChart: React.FC<IChartProps> = ({
             </g>
           </svg>
             {selected && (
-              <div 
-                style={{
-                  width: (maxLabelLength + "em"),
-                  textAlign: "center"
-                }}
-                className={`${className}-innertext`}
-              >
+              <div className={`${className}-innertext`}>
                 <h5
                   style={{ height: "1.1em" }}
                   className={`${className}-innertext-label`}
