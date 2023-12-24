@@ -53,6 +53,7 @@ ReactDOM.render(
         data={graph}
         onMouseEnter={(item) => console.log(`mousing entering: ${item.label}`)}
         onMouseLeave={(item) => console.log(`mouse leaving: ${item.label}`)}
+        verticalAlign='middle'
         onClick={(item, toggled) =>
           toggled
             ? console.log(`selecting: ${item.label}`)

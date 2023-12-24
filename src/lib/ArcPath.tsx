@@ -1,7 +1,5 @@
-import React, { useContext } from 'react';
-import { DonutChartContext, ItemWithRenderProps } from './DonutChart';
-
-export type Props = { item: ItemWithRenderProps };
+import React from 'react';
+import { IArcPathProps } from './Interfaces';
 
 function coordinates(
   half: number,
@@ -68,19 +66,19 @@ function path(
   ${innerArc} z`;
 }
 
-const ArcPath: React.FC<Props> = ({ item }) => {
-  const {
-    className,
-    emptyOffset,
-    graphWidth,
-    innerRadius,
-    outerRadius,
-    selected,
-    selectedOffset,
-    toggledOffset,
-    toggleSelect,
-    total,
-  } = useContext(DonutChartContext);
+const ArcPath: React.FC<IArcPathProps> = ({ 
+  item, 
+  className,
+  emptyOffset,
+  chartSize,
+  innerRadius,
+  outerRadius,
+  selected,
+  selectedOffset,
+  toggledOffset,
+  toggleSelect,
+  total
+}) => {
   const {
     angle,
     classNames,
@@ -91,6 +89,7 @@ const ArcPath: React.FC<Props> = ({ item }) => {
     value,
     ...restItemRenderrops
   } = item;
+
   const activeAngle =
     Number.isNaN(value / total) || total / value === 1
       ? 359.99
@@ -116,7 +115,7 @@ const ArcPath: React.FC<Props> = ({ item }) => {
         ...restItemRenderrops,
       }}
       className={`${className}-arcs-path ${classNames}`}
-      d={path(activeAngle, angle, graphWidth, inner, outer)}
+      d={path(activeAngle, angle, chartSize, inner, outer)}
     ></path>
   );
 };

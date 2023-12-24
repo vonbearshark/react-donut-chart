@@ -1,6 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ArcPath from './ArcPath';
 import LegendItem from './LegendItem';
+import color from './color.json';
+import { IChartProps } from './Interfaces';
 
 export type Item = {
   className?: string;
@@ -8,6 +10,7 @@ export type Item = {
   label: string;
   value: number;
 };
+
 export type ItemWithRenderProps = Item & {
   angle: number;
   classNames: string;
@@ -21,71 +24,48 @@ export type ItemWithRenderProps = Item & {
   opacity: number;
   stroke: string;
 };
+
+
 export type Colors = string[];
-export type Props = {
-  className?: string;
-  clickToggle?: boolean;
-  colorFunction?: (colors: Colors, index: number) => string;
-  colors?: Colors;
-  data: Item[];
-  emptyColor?: string;
-  emptyOffset?: number;
-  formatValues?: (value: number, total: number) => string;
-  height?: number;
-  interactive?: boolean;
-  innerRadius?: number;
-  legend?: boolean;
-  onClick?: (item: Item, toggled: boolean) => void;
-  onMouseEnter?: (item: Item) => void;
-  onMouseLeave?: (item: Item) => void;
-  outerRadius?: number;
-  selectedOffset?: number;
-  strokeColor?: string;
-  toggledOffset?: number;
-  width?: number;
-};
-export type Context = Pick<
-  Required<Props>,
-  | 'className'
-  | 'emptyOffset'
-  | 'innerRadius'
-  | 'outerRadius'
-  | 'selectedOffset'
-  | 'toggledOffset'
-  | 'width'
-> & {
-  graphWidth: number;
-  selected: Item | null;
-  toggleSelect: boolean;
-  total: number;
-};
 
-export const DonutChartContext = createContext<Context>(undefined!);
+function getContainerStyle(
+  legendSide: string,
+  horizontalAlign: string,
+  verticalAlign: string
+): any {
+  const isVertical = legendSide === "top" || legendSide === "bottom";
+  const isReverse = legendSide === "top" || legendSide === "left";
 
-const DonutChart: React.FC<Props> = ({
-  className = 'donutchart',
-  clickToggle = true,
-  colorFunction = (colors, index) => colors[index % colors.length],
-  colors = [
-    '#f44336',
-    '#e91e63',
-    '#9c27b0',
-    '#673ab7',
-    '#3f51b5',
-    '#2196f3',
-    '#03a9f4',
-    '#00bcd4',
-    '#009688',
-    '#4caf50',
-    '#8bc34a',
-    '#cddc39',
-    '#ffeb3b',
-    '#ffc107',
-    '#ff9800',
-    '#ff5722',
-    '#795548',
-    '#607d8b',
-  ],
+  const verticalProperty = isVertical? "justifyContent": "alignItems";
+  const horizontalProperty = isVertical? "alignItems": "justifyContent";
+  
+  const horizontalValue = { 
+    "left": isReverse? "flex-end" : "flex-start",
+    "center": "center",
+    "right": isReverse? "flex-start" : "flex-end" 
+  }[horizontalAlign];
+
+  const verticalValue = { 
+    "top": isReverse? "flex-end" : "flex-start",
+    "middle": "center",
+    "bottom": isReverse? "flex-start" : "flex-end"
+  }[verticalAlign];
+
+  const flexDirection = (isVertical? "column" : "row") + (isReverse? "-reverse" : "");
+  const flexWrap = "wrap" + (isReverse? "-reverse" : "");
+
+  return {
+    display:"flex",
+    width: "fit-content",
+    gap: "1em",
+    [verticalProperty]: verticalValue,
+    [horizontalProperty]: horizontalValue,
+    flexDirection, flexWrap
+  }
+}
+
+
+const DonutChart: React.FC<IChartProps> = ({
   data = [
     {
       className: '',
@@ -94,24 +74,32 @@ const DonutChart: React.FC<Props> = ({
       isEmpty: true,
     },
   ],
+  colors = color,
   emptyColor = '#e0e0e0',
-  emptyOffset = 0.08,
-  formatValues = (value, total) =>
-    Number.isNaN(value / total)
-      ? '--'
-      : `${((value / total) * 100).toFixed(2)}%`,
-  height = 500,
+  className = 'donutchart',
+  clickToggle = true,
+  colorFunction = (colors, index) => colors[index % colors.length],
+  formatValues = (value, total) => Number.isNaN(value / total)? '--'
+    : `${((value / total) * 100).toFixed(2)}%`,
+  
   interactive = true,
-  innerRadius = 0.7,
-  legend = true,
+  onClick = (item, toggled) => (toggled ? item : null),
   onMouseEnter = (item) => item,
   onMouseLeave = (item) => item,
-  onClick = (item, toggled) => (toggled ? item : null),
+
+  chartSize = 750,
+  innerRadius = 0.7,
   outerRadius = 0.9,
+  emptyOffset = 0.08,
+  toggledOffset = 0.04,
   selectedOffset = 0.03,
   strokeColor = '#212121',
-  toggledOffset = 0.04,
-  width = 750,
+
+  legend = true,
+  legendSide = 'right',
+  horizontalAlign = 'left',
+  verticalAlign = 'center',
+  labelRenderer
 }) => {
   const [selected, setSelected] = useState(interactive ? data[0] : null);
   const [toggleSelect, setToggleSelect] = useState(false);
@@ -123,7 +111,6 @@ const DonutChart: React.FC<Props> = ({
     }
   }, [interactive, data]);
 
-  const graphWidth = legend ? width * (2 / 3) : width;
   const total = data.reduce((sum, { value }) => sum + value, 0);
   const { dataWithRenderProps } = data.reduce(
     ({ angle, dataWithRenderProps }, item, index) => {
@@ -176,62 +163,77 @@ const DonutChart: React.FC<Props> = ({
     },
     { angle: 0, dataWithRenderProps: [] as ItemWithRenderProps[] }
   );
+  let containerStyle = getContainerStyle(legendSide, horizontalAlign, verticalAlign);
 
   return (
-    <DonutChartContext.Provider
-      value={{
-        className,
-        emptyOffset,
-        graphWidth,
-        innerRadius,
-        outerRadius,
-        selected,
-        selectedOffset,
-        toggledOffset,
-        toggleSelect,
-        total,
-        width,
-      }}
-    >
-      <svg
-        className={className}
-        style={{ height, width }}
-        viewBox={`0 0 ${width} ${height}`}
-      >
-        <g className={`${className}-arcs`}>
-          {dataWithRenderProps.map((item) => (
-            <ArcPath item={item} key={`arcpath${item.index}`} />
-          ))}
-        </g>
-        {selected && (
-          <g className={`${className}-innertext`}>
-            <text
-              className={`${className}-innertext-label`}
-              x={graphWidth / 2}
-              y="45%"
-              textAnchor="middle"
+    <div className={`${className}-container`} style={containerStyle}>     
+      <div className={`${className}-graph`}>
+        <svg
+            className={className}
+            style={{ width: "100%", height: chartSize }}
+            viewBox={`0 0 ${chartSize} ${chartSize}`}
+          >
+            <g
+              className={`${className}-arcs`}
             >
-              {selected.label}
-            </text>
-            <text
-              className={`${className}-innertext-value`}
-              x={graphWidth / 2}
-              y="60%"
-              textAnchor="middle"
-            >
-              {formatValues(selected.value, total)}
-            </text>
-          </g>
-        )}
-        {legend && (
-          <g className={`${className}-legend`}>
-            {dataWithRenderProps.map((item) => (
-              <LegendItem key={`legenditem${item.index}`} item={item} />
+              {dataWithRenderProps.map((item) => (
+                <ArcPath 
+                  key={`arcpath${item.index}`} 
+                  {...{
+                    item,
+                    className,
+                    emptyOffset,
+                    chartSize,
+                    innerRadius,
+                    outerRadius,
+                    selected,
+                    selectedOffset,
+                    toggledOffset,
+                    toggleSelect,
+                    total
+                  }}
+                />
+              ))}
+            </g>
+            {selected && (
+              <g 
+                className={`${className}-innertext`}
+              >
+                <text
+                  className={`${className}-innertext-label`}
+                  x={chartSize / 2}
+                  y="45%"
+                  textAnchor="middle"
+                >
+                  {selected.label}
+                </text>
+                <text
+                  className={`${className}-innertext-value`}
+                  x={chartSize / 2}
+                  y="60%"
+                  textAnchor="middle"
+                >
+                  {formatValues(selected.value, total)}
+                </text>
+              </g>
+            )}
+          </svg>
+      </div>
+        
+      {legend && (
+        <div className={`${className}-legend`}>
+          {dataWithRenderProps
+            .map((item) => (
+              <LegendItem
+                key={`legenditem${item.index}`}
+                item={item}
+                className={className}
+                labelRenderer={labelRenderer}
+              />
             ))}
-          </g>
-        )}
-      </svg>
-    </DonutChartContext.Provider>
+        </div>
+      )}
+    </div>
   );
 };
 

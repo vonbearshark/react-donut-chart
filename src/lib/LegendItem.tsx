@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
-import { DonutChartContext, ItemWithRenderProps } from './DonutChart';
+import React from 'react';
+import { ILegendItemProps } from './Interfaces';
 
-export type Props = { item: ItemWithRenderProps };
-
-const LegendItem: React.FC<Props> = ({ item }) => {
-  const { className, graphWidth, width } = useContext(DonutChartContext);
+const LegendItem: React.FC<ILegendItemProps> = ({ 
+  item,
+  className,
+  labelRenderer
+}) => {
   const {
     classNames,
     clickHandlers,
@@ -15,28 +16,23 @@ const LegendItem: React.FC<Props> = ({ item }) => {
     ...restItemRenderProps
   } = item;
   const classSuffix = 'legend-item';
-  const legendWidth = width - graphWidth;
-  const sqUnit = legendWidth / 10;
-  const yOffset = 1.5;
 
   return (
-    <g
+    <div
       {...clickHandlers}
       className={`${className}-${classSuffix} ${classNames}`}
-      transform={`translate(${width - legendWidth}, ${
-        index * yOffset * sqUnit
-      })`}
-    >
-      <rect {...restItemRenderProps} height={sqUnit} width={sqUnit} />
-      <text
-        className={`${className}-${classSuffix}-label ${classNames}`}
-        dy=".35em"
-        x={sqUnit + sqUnit / 2}
-        y={sqUnit / 2}
-      >
-        {`${label} - ${value}`}
-      </text>
-    </g>
+    >      
+      <p className={`${className}-${classSuffix}-label ${classNames}`}>
+        <svg
+          width="0.89em"
+          height="0.89em"
+          viewBox="0 0 100 100" 
+          style={{ marginRight: "0.5em" }}
+        ><rect {...restItemRenderProps} width={100} height={100} />
+        </svg>
+        {typeof labelRenderer === "function"? labelRenderer(label, value) : `${label} - ${value}`}
+      </p>
+    </div>
   );
 };
 
