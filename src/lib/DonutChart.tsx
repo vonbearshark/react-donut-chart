@@ -172,7 +172,7 @@ const DonutChart: React.FC<IChartProps> = ({
       <div className={`${className}-graph`}>
         <svg
             className={className}
-            style={{ width: "100%", height: chartSize }}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
             viewBox={`0 0 ${chartSize} ${chartSize}`}
           >
             <g
