@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ArcPath from './ArcPath';
 import LegendItem from './LegendItem';
-import color from './color';
+import color from './Color';
 import { IChartProps } from './Interfaces';
 
 export type Item = {
