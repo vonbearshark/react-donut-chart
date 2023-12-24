@@ -220,9 +220,9 @@ const DonutChart: React.FC<IChartProps> = ({
                 >
                   {selected.label || " "}
                 </h5>
-                <p className={`${className}-innertext-value`}>
+                <div className={`${className}-innertext-value`}>
                   {formatValues(selected.value, total)}
-                </p>
+                </div>
               </div>
             )}
       </div>

@@ -22,7 +22,7 @@ const LegendItem: React.FC<ILegendItemProps> = ({
       {...clickHandlers}
       className={`${className}-${classSuffix} ${classNames}`}
     >      
-      <p className={`${className}-${classSuffix}-label ${classNames}`}>
+      <div className={`${className}-${classSuffix}-label ${classNames}`}>
         <svg
           width="0.89em"
           height="0.89em"
@@ -31,7 +31,7 @@ const LegendItem: React.FC<ILegendItemProps> = ({
         ><rect {...restItemRenderProps} width={100} height={100} />
         </svg>
         {typeof labelRenderer === "function"? labelRenderer(label, item) : `${label} - ${value}`}
-      </p>
+      </div>
     </div>
   );
 };
