@@ -93,7 +93,7 @@ const DonutChart: React.FC<IChartProps> = ({
   emptyOffset = 0.08,
   toggledOffset = 0.04,
   selectedOffset = 0.03,
-  strokeColor = '#212121',
+  strokeColor = 'item-color',
 
   legend = true,
   legendSide = 'right',
@@ -131,7 +131,9 @@ const DonutChart: React.FC<IChartProps> = ({
             } ${isToggled ? 'toggled' : ''}`.trim(),
             fill: isEmpty ? emptyColor : colorFunction(colors, index),
             opacity: isSelected && !toggleSelect ? 0.5 : 1,
-            stroke: isEmpty ? emptyColor : strokeColor,
+            stroke: isEmpty ? emptyColor 
+              : strokeColor === 'item-color' ? colorFunction(colors, index) 
+                : strokeColor,
             clickHandlers: interactive
               ? {
                   onClick: () => {

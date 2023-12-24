@@ -19,7 +19,7 @@ export type ItemWithRenderProps = Item & {
     stroke: string;
 };
 export type Colors = string[];
-export type LabelRenderer = (label: string, value: number) => React.ReactElement | string;
+export type LabelRenderer = (label: string, item: ItemWithRenderProps) => React.ReactElement | string;
 
 export interface IChartProps {
     data: Item[];
@@ -41,7 +41,7 @@ export interface IChartProps {
     emptyOffset?: number;
     toggledOffset?: number;
     selectedOffset?: number;
-    strokeColor?: string;
+    strokeColor?: 'item-color' | string;
     
     legend?: boolean;
     legendSide?: 'top' | 'bottom' | 'left' | 'right';

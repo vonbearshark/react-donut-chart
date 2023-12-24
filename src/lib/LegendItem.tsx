@@ -30,7 +30,7 @@ const LegendItem: React.FC<ILegendItemProps> = ({
           style={{ marginRight: "0.5em" }}
         ><rect {...restItemRenderProps} width={100} height={100} />
         </svg>
-        {typeof labelRenderer === "function"? labelRenderer(label, value) : `${label} - ${value}`}
+        {typeof labelRenderer === "function"? labelRenderer(label, item) : `${label} - ${value}`}
       </p>
     </div>
   );
