@@ -48,7 +48,7 @@ export interface IChartProps {
     labelRenderer?: LabelRenderer;
     verticalAlign?: 'top' | 'middle' | 'bottom';
     horizontalAlign?: 'left' | 'center' | 'right';
-    wrapToTop: boolean;
+    wrapToTop?: boolean;
 };
 
 export interface IArcPathProps extends Pick<
