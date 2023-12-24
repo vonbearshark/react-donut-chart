@@ -1,4 +1,4 @@
-[
+const colors =[
     "#f44336",
     "#e91e63",
     "#9c27b0",
@@ -41,4 +41,5 @@
     "#eeeeee",
     "#a1887f",
     "#90a4ae"
-]
+];
+export default colors;
