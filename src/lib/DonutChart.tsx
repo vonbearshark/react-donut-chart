@@ -56,7 +56,6 @@ function getContainerStyle(
 
   return {
     display:"flex",
-    width: "fit-content",
     gap: "1em",
     [verticalProperty]: verticalValue,
     [horizontalProperty]: horizontalValue,
@@ -177,7 +176,7 @@ const DonutChart: React.FC<IChartProps> = ({
         flexWrap: "nowrap",
         justifyContent:"center",
         alignItems: "center",
-        padding: "5em" 
+        padding:  "64px" 
       }}>
         <svg
             className={className}
