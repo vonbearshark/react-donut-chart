@@ -54,11 +54,16 @@ ReactDOM.render(
         onMouseEnter={(item) => console.log(`mousing entering: ${item.label}`)}
         onMouseLeave={(item) => console.log(`mouse leaving: ${item.label}`)}
         verticalAlign='middle'
+        emptyColor='#333'
         onClick={(item, toggled) =>
           toggled
             ? console.log(`selecting: ${item.label}`)
             : console.log(`unselecting: ${item.label}`)
         }
+        labelRenderer={(label, item) => {
+          const { value } = item;
+          return <span>{label} - <span className="label-value" style={{ backgroundColor: item.fill }}>{value}</span></span>;
+        }}
       />
     </>
   </React.StrictMode>,
