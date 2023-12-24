@@ -31,7 +31,8 @@ export type Colors = string[];
 function getContainerStyle(
   legendSide: string,
   horizontalAlign: string,
-  verticalAlign: string
+  verticalAlign: string,
+  wrapToTop: boolean
 ): any {
   const isVertical = legendSide === "top" || legendSide === "bottom";
   const isReverse = legendSide === "top" || legendSide === "left";
@@ -52,7 +53,7 @@ function getContainerStyle(
   }[verticalAlign];
 
   const flexDirection = (isVertical? "column" : "row") + (isReverse? "-reverse" : "");
-  const flexWrap = "wrap";
+  const flexWrap = wrapToTop? "wrap-reverse" : "wrap";
 
   return {
     display:"flex",
@@ -98,6 +99,7 @@ const DonutChart: React.FC<IChartProps> = ({
   legendSide = 'right',
   horizontalAlign = 'left',
   verticalAlign = 'middle',
+  wrapToTop = false,
   labelRenderer
 }) => {
   const [selected, setSelected] = useState(interactive ? data[0] : null);
@@ -164,7 +166,7 @@ const DonutChart: React.FC<IChartProps> = ({
     },
     { angle: 0, dataWithRenderProps: [] as ItemWithRenderProps[] }
   );
-  let containerStyle = getContainerStyle(legendSide, horizontalAlign, verticalAlign);
+  let containerStyle = getContainerStyle(legendSide, horizontalAlign, verticalAlign, wrapToTop);
   const maxLabelLength = (data
     .sort((a, b) => b.label.length - a.label.length)[0]?.label?.length || 10) + 2;
 
@@ -172,17 +174,22 @@ const DonutChart: React.FC<IChartProps> = ({
     <div className={`${className}-container`} style={containerStyle}>     
       <div className={`${className}-graph`} style={{
         display: "flex",
-        position: "relative",
         flexWrap: "nowrap",
         justifyContent:"center",
         alignItems: "center",
+        position: "relative",
         width: (maxLabelLength + "em"),
         height: (maxLabelLength + "em"),
         textAlign: "center"
       }}>
         <svg
             className={className}
-            style={{ width: "100%", height: "100%", objectFit: "contain", position: "absolute" }}
+            style={{ 
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              objectFit: "contain"
+            }}
             viewBox={`0 0 ${chartSize} ${chartSize}`}
           >
             <g
