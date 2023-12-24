@@ -17,7 +17,7 @@ body {
 body {
   font-family: 'Courier New', Courier, 'Lucida Sans Typewriter',
     'Lucida Typewriter', monospace;
-  font-size: 14px;
+  font-size: 18px;
   font-style: normal;
   font-variant: normal;
   font-weight: 400;
@@ -31,6 +31,14 @@ body {
   width: 750;
 }
 
+.donutchart-container {
+  width: max-content;
+  gap: 2em!important;
+}
+.donutchart-graph {
+  font-size: 25px;
+}
+
 .donutchart-arcs-path,
 .donutchart-legend-item,
 .donutchart-legend-item-label {
@@ -38,11 +46,12 @@ body {
 }
 
 .donutchart-innertext-label {
-  font-size: 18px;
+  font-size: 1em;
+  margin-bottom: 0.66em;
 }
 
 .donutchart-innertext-value {
-  font-size: 36px;
+  font-size: 1.2em;
   font-weight: bold;
 }
 
@@ -56,6 +65,7 @@ body {
   animation-duration: 3s, 1s;
   stroke-dasharray: 1500;
   stroke-dashoffset: 1500;
+  margin-bottom: 0.66rem;
 }
 
 @keyframes DrawLine {

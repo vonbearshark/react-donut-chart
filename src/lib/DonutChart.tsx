@@ -217,12 +217,11 @@ const DonutChart: React.FC<IChartProps> = ({
           </svg>
             {selected && (
               <div className={`${className}-innertext`}>
-                <h5
-                  style={{ height: "1.1em" }}
+                <div
                   className={`${className}-innertext-label`}
                 >
                   {selected.label || " "}
-                </h5>
+                </div>
                 <div className={`${className}-innertext-value`}>
                   {formatValues(selected.value, total)}
                 </div>
