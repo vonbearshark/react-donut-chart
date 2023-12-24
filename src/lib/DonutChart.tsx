@@ -98,7 +98,7 @@ const DonutChart: React.FC<IChartProps> = ({
   legend = true,
   legendSide = 'right',
   horizontalAlign = 'left',
-  verticalAlign = 'center',
+  verticalAlign = 'middle',
   labelRenderer
 }) => {
   const [selected, setSelected] = useState(interactive ? data[0] : null);
