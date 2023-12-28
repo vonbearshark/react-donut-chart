@@ -1,4 +1,5 @@
-const colors =[
+
+const colors = [
     "#f44336",
     "#e91e63",
     "#9c27b0",
@@ -18,8 +19,6 @@ const colors =[
     "#795548",
     "#607d8b",
     "#9e9e9e",
-    "#795548",
-    "#607d8b",
     "#e57373",
     "#f06292",
     "#ba68c8",
@@ -38,8 +37,8 @@ const colors =[
     "#ff8a65",
     "#a1887f",
     "#90a4ae",
-    "#eeeeee",
-    "#a1887f",
-    "#90a4ae"
+    "#eeeeee"
 ];
-export default colors;
+
+const uniqueColors = Array.from(new Set(colors));
+export default uniqueColors;
