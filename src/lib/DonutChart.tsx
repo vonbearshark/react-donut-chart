@@ -57,7 +57,9 @@ function getContainerStyle(
 
   return {
     display:"flex",
-    gap: "1em",
+    gap: "2em",
+    maxWidth: "100%",
+    width: "max-content",
     [verticalProperty]: verticalValue,
     [horizontalProperty]: horizontalValue,
     flexDirection, flexWrap

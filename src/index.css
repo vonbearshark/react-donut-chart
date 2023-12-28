@@ -30,11 +30,6 @@ body {
   height: 500;
   width: 750;
 }
-
-.donutchart-container {
-  width: max-content;
-  gap: 2em!important;
-}
 .donutchart-graph {
   font-size: 25px;
 }
