@@ -166,7 +166,7 @@ const DonutChart: React.FC<IChartProps> = ({
         total: total + value,
       };
     },
-    { angle: 0, dataWithRenderProps: [] as ItemWithRenderProps[] }
+    { angle: -90, dataWithRenderProps: [] as ItemWithRenderProps[] }
   );
   let containerStyle = getContainerStyle(legendSide, horizontalAlign, verticalAlign, wrapToTop);
   const maxLabelLength = (data
